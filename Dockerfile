@@ -20,9 +20,6 @@ FROM golang:1.21-alpine AS go-builder
 
 WORKDIR /app
 
-# Install godotenv
-RUN go install github.com/joho/godotenv@latest
-
 # Copy go.mod and go.sum
 COPY go.mod go.sum ./
 
