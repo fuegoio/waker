@@ -131,10 +131,8 @@ func sendWakeOnLan(mac, broadcastIP, port string) error {
 	defer conn.Close()
 
 	// Enable broadcast
-	if udpConn, ok := conn.(*net.UDPConn); ok {
-		if err := udpConn.SetWriteBuffer(0); err != nil {
-			log.Printf("Warning: failed to set write buffer: %v", err)
-		}
+	if err := conn.SetWriteBuffer(0); err != nil {
+		log.Printf("Warning: failed to set write buffer: %v", err)
 	}
 
 	// Send magic packet
