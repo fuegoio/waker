@@ -37,8 +37,11 @@ FROM alpine:3.18
 
 WORKDIR /app
 
+# Create directory for frontend files
+RUN mkdir -p /web/dist
+
 # Copy built frontend from frontend-builder
-COPY --from=frontend-builder /app/web/dist ./web/dist
+COPY --from=frontend-builder /app/web/dist /web/dist
 
 # Copy built backend from go-builder
 COPY --from=go-builder /app/waker .
